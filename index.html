@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu yang Tercinta</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            transition: background 1s ease;
+        }
+
+        /* Animated Love Background */
+        .love-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        .heart-bg {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 5px rgba(231, 76, 60, 0.5));
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            color: #e74c3c;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+            }
+            25% {
+                transform: scale(1.1);
+                text-shadow: 0 0 15px rgba(231, 76, 60, 0.7);
+            }
+            50% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+            }
+            75% {
+                transform: scale(1.1);
+                text-shadow: 0 0 15px rgba(231, 76, 60, 0.7);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+            }
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
+            margin: 15px 0;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .love-letter:hover {
+            transform: translateY(-5px) rotateY(5deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-love {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-love:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(45deg, #ff8e8e, #ff6b6b);
+        }
+
+        .btn-love:active {
+            transform: scale(0.95);
+        }
+
+        .btn-love:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+
+        .btn-love:hover:after {
+            left: 100%;
+        }
+
+        .photo-frame {
+            border: 10px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: rotate(3deg);
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-box {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #ff6b6b;
+            transition: all 0.5s ease;
+            transform-origin: left center;
+        }
+
+        .message-box:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-box:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent;
+            transition: all 0.3s;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 0;
+            margin-top: 40px;
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tap animation for mobile */
+        .tap-effect {
+            animation: tapScale 0.3s ease-out;
+        }
+
+        @keyframes tapScale {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Floating animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 9999;
+            animation: confetti 3s ease-out forwards;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Love envelope effect */
+        .envelope {
+            position: relative;
+            width: 200px;
+            height: 120px;
+            background: #ff8e8e;
+            border-radius: 5px;
+            margin: 30px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .envelope:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 60px solid #ff6b6b;
+            transform-origin: top;
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        .envelope:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 60px solid #ffb3b3;
+            z-index: 1;
+        }
+
+        .envelope:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+        }
+
+        .envelope:hover:before {
+            transform: rotateX(180deg);
+        }
+
+        .envelope .letter {
+            position: absolute;
+            width: 180px;
+            height: 100px;
+            background: white;
+            left: 10px;
+            top: 10px;
+            z-index: 1;
+            transition: all 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #ff6b6b;
+        }
+
+        .envelope:hover .letter {
+            transform: translateY(-50px);
+            height: 150px;
+        }
+
+        /* Fireworks */
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 5px;
+            animation: firework 1s ease-out forwards;
+            opacity: 0;
+            z-index: 9998;
+        }
+
+        @keyframes firework {
+            0% {
+                transform: translate(var(--x), var(--y));
+                width: 5px;
+                height: 5px;
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(20);
+                opacity: 0;
+            }
+        }
+
+        /* Romantic cursor */
+        .romantic-cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            background-size: contain;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+
+        /* Floating text bubbles */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #ff6b6b;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            animation: bubbleFloat 10s linear infinite;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Romantic title */
+        .romantic-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .romantic-title:hover {
+            text-shadow: 0 0 10px rgba(255,107,107,0.5);
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .photo-frame {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .love-letter {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            .btn-love {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+            
+            h1.display-5 {
+                font-size: 2.5rem;
+            }
+            
+            .romantic-title {
+                font-size: 2.5rem;
+            }
+            
+            .envelope {
+                width: 150px;
+                height: 90px;
+            }
+            
+            .envelope:before {
+                border-left: 75px solid transparent;
+                border-right: 75px solid transparent;
+                border-top: 45px solid #ff6b6b;
+            }
+            
+            .envelope:after {
+                border-left: 75px solid transparent;
+                border-right: 75px solid transparent;
+                border-bottom: 45px solid #ffb3b3;
+            }
+            
+            .envelope .letter {
+                width: 135px;
+                height: 75px;
+                font-size: 18px;
+            }
+            
+            .envelope:hover .letter {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Romantic Cursor -->
+    <div class="romantic-cursor" id="romanticCursor"></div>
+
+    <!-- Animated Love Background -->
+    <div class="love-bg" id="loveBg"></div>
+
+    <!-- Hero Section -->
+    <section class="py-5 text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="romantic-title mb-3 animate__animated animate__fadeInDown">
+                        Untuk <span class="heart"><i class="fas fa-heart"></i></span> <span>Fianaa</span>
+                    </h1>
+                    <p class="lead animate__animated animate__fadeIn animate__delay-1s">
+                        Pesan khusus dari <span>hatiku</span>...
+                    </p>
+                    <div class="mt-4 animate__animated animate__fadeIn animate__delay-2s floating">
+                        <img src="img/fianaa.jpg"
+                            alt="Couple" class="img-fluid rounded-circle photo-frame" id="couplePhoto">
+                    </div>
+                    
+                    <!-- Envelope Animation -->
+                    <div class="envelope animate__animated animate__fadeIn animate__delay-3s" id="envelope">
+                        <div class="letter">
+                            <i class="fas fa-heart heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Letter Section -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="love-letter p-4 animate__animated animate__fadeInUp" id="mainLetter">
+                        <h2 class="text-center mb-3 gradient-text">Untuk Yang Tersayang,</h2>
+
+                        <p class="mb-3">
+                            Setiap kali aku memikirkanmu, hatiku dipenuhi kebahagiaan. Kamu adalah sinar matahari
+                            yang menerangi hariku, pelangi setelah hujan, dan bintang yang bersinar di malam hari.
+                        </p>
+
+                        <div class="text-center my-3">
+                            <i class="fas fa-heart heart fa-2x"></i>
+                        </div>
+
+                        <p class="mb-3">
+                            Aku bersyukur setiap hari karena memiliki kamu. Senyummu membuatku kuat, tawamu
+                            adalah musik terindah, dan kehadiranmu adalah hadiah terbaik.
+                        </p>
+
+                        <div class="message-box">
+                            <p class="mb-0 fst-italic">
+                                "Jika aku harus memilih antara mencintaimu dan bernapas, aku akan menggunakan
+                                napas terakhirku untuk mengatakan '<span class="gradient-text">Aku mencintaimu</span>'."
+                            </p>
+                        </div>
+
+                        <p class="mt-3">
+                            Terima kasih telah menjadi dirimu. Aku berjanji akan selalu ada untukmu, hari ini
+                            dan selamanya.
+                        </p>
+
+                        <div class="text-end mt-4">
+                            <p class="mb-1">Dengan cinta,</p>
+                            <h4 class="fw-bold gradient-text">- Aku</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Button -->
+    <section class="py-5 text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Apakah kamu mencintaiku?</h3>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <button id="btnYes" class="btn btn-love">
+                            <i class="fas fa-heart me-2"></i> Ya!
+                        </button>
+                        <button id="btnNo" class="btn btn-outline-secondary" style="padding: 12px 30px; border-radius: 50px;">
+                            Tidak
+                        </button>
+                    </div>
+                    <div id="loveResponse" class="mt-4 animate__animated" style="display: none;">
+                        <h4 class="gradient-text"><i class="fas fa-heart me-2"></i> Aku juga mencintaimu!</h4>
+                        <p class="mt-2">Terima kasih sudah menjadi bagian hidupku ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+
+        // Create floating hearts background
+        function createHearts() {
+            const loveBg = document.getElementById('loveBg');
+            const colors = ['#ff6b6b', '#ff8e8e', '#ffb3b3', '#ffd8d8', '#e74c3c', '#ff4757'];
+
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.classList.add('heart-bg');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                loveBg.appendChild(heart);
+            }
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#ff8e8e', '#ffb3b3', '#e74c3c', '#ff4757', '#ff6347'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Create fireworks
+        function createFireworks(count = 10) {
+            const colors = ['#ff6b6b', '#ff8e8e', '#ffb3b3', '#e74c3c', '#ff4757', '#ff6347'];
+            
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.classList.add('firework');
+                    
+                    // Random position
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.8;
+                    
+                    // Random color
+                    firework.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Set position
+                    firework.style.setProperty('--x', `${Math.random() * 100 - 50}px`);
+                    firework.style.setProperty('--y', `${Math.random() * 100 - 50}px`);
+                    firework.style.left = `${x}px`;
+                    firework.style.top = `${y}px`;
+                    
+                    document.body.appendChild(firework);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 1000);
+                }, i * 200);
+            }
+        }
+
+        // Create floating text bubbles
+        function createBubbles() {
+            const texts = ['I ❤️ U', 'Love', 'Forever', 'Fianaa', 'Sweet', 'Darling', 'Fianaa', 'My Love'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    bubble.textContent = texts[Math.floor(Math.random() * texts.length)];
+                    
+                    // Random size and position
+                    const size = Math.random() * 50 + 30;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${Math.random() * 100}vw`;
+                    bubble.style.bottom = `-${size}px`;
+                    
+                    // Random animation duration and delay
+                    bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                    bubble.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    document.body.appendChild(bubble);
+                }, i * 1000);
+            }
+        }
+
+        // Romantic cursor effect
+        function setupRomanticCursor() {
+            const cursor = document.getElementById('romanticCursor');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            });
+            
+            // Make cursor pulse when hovering over interactive elements
+            document.querySelectorAll('button, a, .photo-frame, .love-letter, .envelope').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursor.style.transition = 'transform 0.2s ease';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+        }
+
+        // Button interaction
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const loveResponse = document.getElementById('loveResponse');
+        const couplePhoto = document.getElementById('couplePhoto');
+        const envelope = document.getElementById('envelope');
+        const mainLetter = document.getElementById('mainLetter');
+
+        btnYes.addEventListener('click', function () {
+            this.classList.add('tap-effect');
+            loveResponse.style.display = 'block';
+            loveResponse.classList.add('animate__heartBeat');
+            this.innerHTML = '<i class="fas fa-heart me-2"></i> Aku Tau Sayaang! ❤️';
+            
+            // Create heart explosion
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.position = 'fixed';
+                heart.style.left = (btnYes.getBoundingClientRect().left + btnYes.offsetWidth / 2) + 'px';
+                heart.style.top = (btnYes.getBoundingClientRect().top + btnYes.offsetHeight / 2) + 'px';
+                heart.style.fontSize = '25px';
+                heart.style.color = '#ff6b6b';
+                heart.style.zIndex = '9999';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = `heartExplode ${Math.random() * 0.5 + 0.5}s ease-out forwards`;
+
+                document.body.appendChild(heart);
+
+                // Keyframes for explosion
+                const keyframes = `
+                    @keyframes heartExplode {
+                        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                        100% { transform: translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px) scale(0); opacity: 0; }
+                    }
+                `;
+
+                const style = document.createElement('style');
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+
+                // Remove after animation
+                setTimeout(() => {
+                    heart.remove();
+                    style.remove();
+                }, 1000);
+            }
+            
+            // Create confetti
+            createConfetti();
+            
+            // Create fireworks
+            createFireworks(15);
+            
+            // Change background color temporarily
+            document.body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%)';
+            setTimeout(() => {
+                document.body.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)';
+            }, 1000);
+            
+            // Animate photo
+            couplePhoto.classList.add('animate__animated', 'animate__tada');
+            
+            // Animate main letter
+            mainLetter.classList.add('animate__animated', 'animate__pulse');
+            
+            // Remove animations after they complete
+            setTimeout(() => {
+                couplePhoto.classList.remove('animate__animated', 'animate__tada');
+                mainLetter.classList.remove('animate__animated', 'animate__pulse');
+            }, 1000);
+        });
+
+        btnNo.addEventListener('mouseover', function() {
+            if (window.innerWidth > 768) { // Only on desktop
+                // Move the button to random position
+                const x = Math.random() * (window.innerWidth - this.offsetWidth - 40) + 20;
+                const y = Math.random() * (window.innerHeight - this.offsetHeight - 40) + 20;
+
+                this.style.position = 'absolute';
+                this.style.left = x + 'px';
+                this.style.top = y + 'px';
+
+                // Change text sometimes
+                if (Math.random() > 0.7) {
+                    const texts = ['Yakin?', 'Serius?', 'Benarkah?', 'Sayang...', 'Aduh', 'Jangan begitu'];
+                    this.textContent = texts[Math.floor(Math.random() * texts.length)];
+                }
+                
+                // Add shake animation
+                this.classList.add('animate__animated', 'animate__headShake');
+                setTimeout(() => {
+                    this.classList.remove('animate__animated', 'animate__headShake');
+                }, 1000);
+            }
+        });
+
+        btnNo.addEventListener('click', function() {
+            if (window.innerWidth <= 768) { // On mobile
+                // Move the button to random position
+                const x = Math.random() * (window.innerWidth - this.offsetWidth - 40) + 20;
+                const y = Math.random() * (window.innerHeight - this.offsetHeight - 40) + 20;
+
+                this.style.position = 'absolute';
+                this.style.left = x + 'px';
+                this.style.top = y + 'px';
+
+                // Change text sometimes
+                if (Math.random() > 0.7) {
+                    const texts = ['Yakin?', 'Serius?', 'Benarkah?', 'Sayang...', 'Aduh', 'Jangan begitu'];
+                    this.textContent = texts[Math.floor(Math.random() * texts.length)];
+                }
+                
+                // Add shake animation
+                this.classList.add('animate__animated', 'animate__headShake');
+                setTimeout(() => {
+                    this.classList.remove('animate__animated', 'animate__headShake');
+                }, 1000);
+            }
+        });
+
+        // Photo click effect
+        couplePhoto.addEventListener('click', function() {
+            this.classList.add('animate__animated', 'animate__rubberBand');
+            setTimeout(() => {
+                this.classList.remove('animate__animated', 'animate__rubberBand');
+            }, 1000);
+            
+            // Create floating hearts
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.position = 'absolute';
+                heart.style.left = (this.getBoundingClientRect().left + this.offsetWidth / 2) + 'px';
+                heart.style.top = (this.getBoundingClientRect().top + this.offsetHeight / 2) + 'px';
+                heart.style.fontSize = '20px';
+                heart.style.color = '#ff6b6b';
+                heart.style.zIndex = '9999';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = `heartFloat ${Math.random() * 2 + 2}s ease-out forwards`;
+
+                document.body.appendChild(heart);
+
+                // Keyframes for floating
+                const keyframes = `
+                    @keyframes heartFloat {
+                        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                        100% { transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * -100 - 50}px) scale(0.5); opacity: 0; }
+                    }
+                `;
+
+                const style = document.createElement('style');
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+
+                // Remove after animation
+                setTimeout(() => {
+                    heart.remove();
+                    style.remove();
+                }, 3000);
+            }
+        });
+
+        // Envelope interaction
+        envelope.addEventListener('click', function() {
+            this.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                this.classList.remove('animate__animated', 'animate__pulse');
+            }, 1000);
+            
+            // Scroll to main letter
+            mainLetter.scrollIntoView({ behavior: 'smooth' });
+            
+            // Highlight main letter
+            mainLetter.style.boxShadow = '0 0 30px rgba(255,107,107,0.5)';
+            setTimeout(() => {
+                mainLetter.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.15)';
+            }, 2000);
+        });
+
+        // Initialize
+        window.addEventListener('load', function () {
+            createHearts();
+            createBubbles();
+            setupRomanticCursor();
+
+            // Add tap effect to all buttons
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('touchstart', function () {
+                    this.classList.add('tap-effect');
+                });
+
+                btn.addEventListener('touchend', function () {
+                    setTimeout(() => {
+                        this.classList.remove('tap-effect');
+                    }, 300);
+                });
+            });
+            
+            // Add floating animation to elements
+            document.querySelectorAll('.floating').forEach(el => {
+                el.style.animationDelay = Math.random() * 0.5 + 's';
+            });
+            
+            // Add initial animations
+            setTimeout(() => {
+                envelope.classList.add('animate__animated', 'animate__swing');
+                setTimeout(() => {
+                    envelope.classList.remove('animate__animated', 'animate__swing');
+                }, 1000);
+            }, 2000);
+            
+            // Add hover effect to love letter
+            mainLetter.addEventListener('mouseenter', () => {
+                mainLetter.style.transform = 'translateY(-10px) rotateY(10deg)';
+            });
+            
+            mainLetter.addEventListener('mouseleave', () => {
+                mainLetter.style.transform = 'translateY(-5px) rotateY(5deg)';
+            });
+        });
+    </script>
+</body>
+
+</html>
